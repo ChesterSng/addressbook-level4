@@ -96,6 +96,7 @@ public class DispenseMedicineCommand extends QueueCommand {
             return new CommandResult(String.format(MESSAGE_SUCCESS, quantityToDispense.getValue(),
                     medicine.getMedicineName()));
         } catch (InsufficientStockException ise) {
+            currentPatient.addMedicine(medicine, new QuantityToDispense(0));
             throw new CommandException(String.format(MESSAGE_MEDICINE_STOCK_INSUFFICIENT, medicine.getMedicineName()));
         }
 
